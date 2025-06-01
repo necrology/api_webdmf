@@ -18,11 +18,12 @@ func main() {
 	// Inisialisasi Fiber
 	app := fiber.New()
 
-	// Konfigurasi CORS agar mendukung credentials (session cookie)
+	// Konfigurasi CORS agar mendukung credentials (session cookie) dan preflight
 	app.Use(cors.New(cors.Config{
-		AllowOrigins:     "http://103.127.99.152:3000",   // alamat frontend Nuxt
-		AllowHeaders:     "Origin, Content-Type, Accept", // header yang diizinkan
-		AllowCredentials: true,                           // penting agar browser kirim dan simpan cookie fiber.sid
+		AllowOrigins:     "http://103.127.99.152:3000",                  // alamat frontend Nuxt
+		AllowMethods:     "GET,POST,PUT,DELETE,OPTIONS",                 // metode HTTP yang diizinkan
+		AllowHeaders:     "Origin, Content-Type, Accept, Authorization", // header yang diizinkan
+		AllowCredentials: true,                                          // penting agar browser kirim dan simpan cookie fiber.sid
 	}))
 
 	// Routing user
